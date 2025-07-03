@@ -9,6 +9,7 @@
 - Webpack
 - Prettier
 - ESLint
+- Normalize.css
 - Figma
 
 ## Gallery

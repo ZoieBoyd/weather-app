@@ -2,10 +2,49 @@
 <html lang="en">
    <head>
       <meta charset="UTF-8" />
-      <meta name="viewport" content="width=, initial-scale=1.0" />
-      <title>Document</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Weather</title>
    </head>
    <body>
-      <h1>Hello World!</h1>
+      <nav></nav>
+
+      <form action="submit">
+         <input
+            type="text"
+            name="location"
+            id="location-input"
+            placeholder="Search by location (e.g. London)..."
+         />
+         <button id="submit-location-btn">Submit</button>
+      </form>
+      <section id="main-content">
+         <h2 id="location">Location</h2>
+         <h3 id="date">Date</h3>
+         <h3 id="temperature">0°</h3>
+      </section>
+
+      <section id="current-conditions">
+         <div>
+            <img src="images/wind.svg" />
+            <p id="wind-speed">0 mph</p>
+            <p>Wind</p>
+         </div>
+         <div>
+            <img src="images/humidity-drop.svg" />
+            <p id="humidity-level">0%</p>
+            <p>Humidity</p>
+         </div>
+         <div>
+            <img src="images/rain-cloud.svg" alt="rain icon" />
+            <p id="rain-chance">0%</p>
+            <p>Rain</p>
+         </div>
+      </section>
+
+      <section id="today-forecast">
+         <h4>Today's Forecast</h4>
+      </section>
+
+      <section id="five-day-forecast"></section>
    </body>
 </html>
