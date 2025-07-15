@@ -1,19 +1,19 @@
 @font-face {
-   font-family: "Poppins";
-   src:
-      url("fonts/poppins-regular-webfont.woff2") format("woff2"),
-      url("fonts/poppins-regular-webfont.woff") format("woff"),
-      url("fonts/Poppins-Regular.ttf") format("truetype");
-   font-weight: normal;
-   font-style: normal;
-}
-
-@font-face {
    font-family: "Plus Jakarta Sans";
    src:
       url("fonts/plusjakartasans-variablefont_wght-webfont.woff2") format("woff2"),
       url("fonts/plusjakartasans-variablefont_wght-webfont.woff") format("woff"),
       url("fonts/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: "Poppins";
+   src:
+      url("fonts/poppins-regular-webfont.woff2") format("woff2"),
+      url("fonts/poppins-regular-webfont.woff") format("woff"),
+      url("fonts/Poppins-Regular.ttf") format("truetype");
    font-weight: normal;
    font-style: normal;
 }
@@ -34,10 +34,244 @@
       url("fonts/poppins-medium-webfont.woff2") format("woff2"),
       url("fonts/poppins-medium-webfont.woff") format("woff"),
       url("fonts/Poppins-Medium.ttf") format("truetype");
-   font-weight: medium;
+   font-weight: 500;
    font-style: normal;
 }
 
+:root {
+   --secondary-card-bg-color: #e2f2ff;
+   --text-color: #294a65;
+   --text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+   --box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+:root.day {
+   --bg-color: #a7e3f4;
+   --bg-gradient: linear-gradient(
+      131deg,
+      rgba(167, 227, 244, 1) 0%,
+      rgba(104, 202, 229, 1) 60%,
+      rgba(109, 170, 227, 1) 100%
+   );
+   --card-bg-color: #e2f2ff;
+   --card-text-color: #406f93;
+}
+
+:root.night .icon {
+   filter: brightness(0) invert(1);
+}
+
+:root.night {
+   --bg-color: #447fac;
+   --bg-gradient: linear-gradient(
+      131deg,
+      rgba(68, 127, 172, 1) 0%,
+      rgba(35, 61, 81, 1) 60%,
+      rgba(46, 72, 91, 1) 100%
+   );
+   --card-bg-color: #3c6789;
+   --card-text-color: white;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
 body {
+   width: 100vw;
+   min-height: 100vh;
    font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
+   background-color: var(--bg-color);
+   background: var(--bg-gradient);
+   display: grid;
+   grid-template-columns: 0.5fr 3.5fr 2fr;
+   grid-template-areas:
+      "nav search ."
+      "nav main-content todayForecast"
+      "nav todayStats todayForecast"
+      "nav fiveDayForecast todayForecast";
+   color: var(--text-color);
+}
+
+#main-content {
+   display: grid;
+   gap: 1rem;
+   grid-template-areas:
+      "headline weatherIcon"
+      "temperature weatherIcon";
+   color: white;
+   text-shadow: var(--text-shadow);
+   grid-area: main-content;
+   padding-inline: 1rem;
+}
+
+#headline {
+   align-self: end;
+}
+
+#location {
+   font-weight: 800;
+   font-size: 4rem;
+}
+
+#temperature {
+   align-self: start;
+   font-weight: 800;
+   font-size: 7rem;
+}
+
+#date {
+   font-family: "Poppins", sans-serif;
+   font-weight: 500;
+   font-size: 2.5rem;
+}
+
+#today-weather-icon {
+   grid-area: weatherIcon;
+   justify-self: end;
+   width: clamp(20%, 80%, 350px);
+}
+
+#current-conditions {
+   display: grid;
+   grid-auto-flow: column;
+   text-align: center;
+   gap: 3rem;
+   grid-area: todayStats;
+   align-items: center;
+   justify-self: center;
+}
+
+#current-conditions div,
+#five-day-forecast {
+   background-color: var(--card-bg-color);
+}
+
+#current-conditions div {
+   color: var(--card-text-color);
+   border-radius: 20px;
+   padding: 1rem;
+   width: 13.5rem;
+}
+
+#wind-speed,
+#humidity-level,
+#rain-chance {
+   font-weight: 600;
+   font-size: 1.65rem;
+}
+
+#current-conditions div img {
+   height: 3.5rem;
+   margin-bottom: 0.5rem;
+}
+
+.stat-title {
+   font-size: 1.5rem;
+}
+
+#today-forecast {
+   grid-area: todayForecast;
+}
+
+#five-day-forecast {
+   grid-area: fiveDayForecast;
+}
+
+nav {
+   grid-area: nav;
+   width: 80%;
+}
+
+form {
+   grid-area: search;
+   margin-top: 1rem;
+}
+
+form,
+#main-content,
+#current-conditions {
+   margin-left: 1rem;
+}
+
+form input {
+   border: none;
+   border-radius: 25px;
+   padding: 0.7rem 2rem;
+   font-size: 1.25rem;
+   width: 91%;
+}
+
+form input::placeholder {
+   font-style: italic;
+}
+
+nav,
+#today-forecast {
+   background-color: var(--secondary-card-bg-color);
+}
+
+nav,
+#today-forecast,
+#five-day-forecast,
+#current-conditions > div {
+   box-shadow: var(--box-shadow);
+   text-shadow: var(--text-shadow);
+}
+
+#today-forecast {
+   border-radius: 20px;
+   padding: 2rem 2.5rem;
+   margin-left: 4rem;
+   margin-right: 6rem;
+   overflow-y: auto;
+}
+
+#today-forecast,
+#five-day-forecast {
+   margin-bottom: 2rem;
+}
+
+#five-day-forecast {
+   display: grid;
+   grid-auto-flow: column;
+   border-radius: 20px;
+   padding: 1rem;
+}
+
+#five-day-forecast > div {
+   display: grid;
+   grid-template-areas:
+      "date date"
+      "icon icon"
+      "min max";
+   justify-content: space-around;
+   text-align: center;
+   margin: 0.7rem 1rem;
+   background-color: white;
+   border-radius: 10px;
+}
+
+#five-day-forecast > div > img {
+   grid-area: icon;
+   width: 6.5rem;
+   justify-self: center;
+}
+
+.five-day-date {
+   grid-area: date;
+}
+
+.min-temp {
+   grid-area: min;
+}
+
+.max-temp {
+   grid-area: max;
+}
+
+h4 {
+   font-size: 1.8rem;
 }

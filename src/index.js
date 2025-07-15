@@ -10,5 +10,10 @@ const locationSubmitBtn = document.getElementById("submit-location-btn");
 locationSubmitBtn.addEventListener("click", async (event) => {
    event.preventDefault();
    const weatherData = await getWeatherData(locationInput.value);
+   console.log(weatherData);
    renderData(weatherData);
+   locationInput.value = "";
 });
+
+locationInput.value = "London";
+locationSubmitBtn.click();
