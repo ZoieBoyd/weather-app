@@ -1,0 +1,35 @@
+:root {
+   --secondary-card-bg-color: #e2f2ff;
+   --text-color: #294a65;
+   --secondary-text-color: #406f93;
+   --text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+   --box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+:root.day {
+   --bg-color: #a7e3f4;
+   --bg-gradient: linear-gradient(
+      131deg,
+      rgba(167, 227, 244, 1) 0%,
+      rgba(104, 202, 229, 1) 60%,
+      rgba(109, 170, 227, 1) 100%
+   );
+   --card-bg-color: #e2f2ff;
+   --card-text-color: #406f93;
+}
+
+:root.night .icon {
+   filter: brightness(0) invert(1);
+}
+
+:root.night {
+   --bg-color: #447fac;
+   --bg-gradient: linear-gradient(
+      131deg,
+      rgba(68, 127, 172, 1) 0%,
+      rgba(35, 61, 81, 1) 60%,
+      rgba(46, 72, 91, 1) 100%
+   );
+   --card-bg-color: #3c6789;
+   --card-text-color: white;
+}

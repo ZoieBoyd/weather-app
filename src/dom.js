@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
 const root = document.documentElement;
 
 export const renderData = (weatherData) => {
@@ -35,6 +35,7 @@ export const renderData = (weatherData) => {
    });
 
    renderFiveDayForecast(weatherData);
+   renderHourlyForecast(weatherData);
 };
 
 const renderFiveDayForecast = (weatherData) => {
@@ -51,7 +52,7 @@ const createFiveDayForecastCard = (data, card) => {
    const minTemp = card.querySelector(".min-temp");
    const maxTemp = card.querySelector(".max-temp");
 
-   date.textContent = format(new Date(data.day), "eee do");
+   date.innerHTML = `<span class = "bold">${format(new Date(data.day), "eee")}</span> ${format(new Date(data.day), "do")}`;
 
    import(`./images/weather-icons/minimal/${data.icon}.png`).then((module) => {
       weatherIcon.src = module.default;
@@ -59,4 +60,36 @@ const createFiveDayForecastCard = (data, card) => {
 
    minTemp.textContent = `${data.minTemperature}°`;
    maxTemp.textContent = `${data.maxTemperature}°`;
+};
+
+const renderHourlyForecast = (weatherData) => {
+   clearHourlyForecast();
+   const currentHour = parseInt(weatherData.time.slice(0, 2));
+   const data = weatherData.hourlyForecast;
+   // Only renders information occurring in the future (every 2 hours)
+   for (let i = currentHour; i < data.length; i += 2) {
+      createHourlyForecastCard(data[i]);
+   }
+};
+
+const createHourlyForecastCard = (data) => {
+   const container = document.getElementById("hourly-card-container");
+   const card = document.createElement("div");
+   card.className = "hourly-card";
+   const time = document.createElement("p");
+   const icon = document.createElement("img");
+   const temp = document.createElement("p");
+   temp.className = "hourly-temp";
+   time.textContent = format(parse(data.time, "HH:mm:ss", new Date()), "h:mm");
+   import(`./images/weather-icons/minimal/${data.icon}.png`).then((module) => {
+      icon.src = module.default;
+   });
+   temp.textContent = `${data.temperature}°`;
+   card.append(time, icon, temp);
+   container.appendChild(card);
+};
+
+const clearHourlyForecast = () => {
+   const container = document.getElementById("hourly-card-container");
+   container.replaceChildren();
 };

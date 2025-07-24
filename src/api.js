@@ -8,7 +8,6 @@ export async function getWeatherData(location) {
          { mode: "cors" }
       );
       const weatherData = await response.json();
-      //console.log(weatherData);
       return {
          city: weatherData.resolvedAddress.split(",")[0],
          date: weatherData.days[0].datetime,
@@ -21,13 +20,13 @@ export async function getWeatherData(location) {
          hourlyForecast: weatherData.days[0].hours.map((hour) => ({
             time: hour.datetime,
             icon: hour.icon,
-            temperature: hour.temp
+            temperature: Math.round(hour.temp)
          })),
          fiveDayForecast: weatherData.days.slice(1, 6).map((day) => ({
             day: day.datetime,
             icon: day.icon,
-            minTemperature: day.tempmin,
-            maxTemperature: day.tempmax
+            minTemperature: Math.round(day.tempmin),
+            maxTemperature: Math.round(day.tempmax)
          }))
       };
    } catch (err) {
