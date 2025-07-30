@@ -6,8 +6,31 @@
       <title>Weather</title>
    </head>
    <body>
+      <dialog>
+         <div id="dialog-container">
+            <button id="close-btn" class="image-btn close-btn"></button>
+            <h4>Settings</h4>
+            <div id="toggle-options">
+               <input type="checkbox" id="temperature-toggle" class="toggle" />
+               <label for="temperature-toggle" class="toggle-container extra-bold">
+                  <div>Celsius</div>
+                  <div>Fahrenheit</div>
+               </label>
+               <input type="checkbox" id="time-toggle" class="toggle" />
+               <label for="time-toggle" class="toggle-container extra-bold">
+                  <div>24 Hour</div>
+                  <div>12 Hour</div>
+               </label>
+            </div>
+            <div id="form-actions">
+               <button id="save-btn" class="extra-bold">Save Changes</button>
+               <button id="cancel-btn" class="extra-bold close-btn">Cancel</button>
+            </div>
+         </div>
+      </dialog>
+
       <nav>
-         <button id="settings-btn"></button>
+         <button id="settings-btn" class="image-btn"></button>
       </nav>
 
       <form action="submit">

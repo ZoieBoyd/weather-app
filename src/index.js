@@ -8,12 +8,14 @@ import { getWeatherData } from "./api";
 import { renderData } from "./dom";
 
 const locationInput = document.getElementById("location-input");
+export let lastSearchedLocation = "London";
 //const locationSubmitBtn = document.getElementById("submit-location-btn");
 
 locationInput.addEventListener("keypress", async (event) => {
    if (event.key === "Enter") {
       event.preventDefault();
-      const weatherData = await getWeatherData(locationInput.value);
+      lastSearchedLocation = locationInput.value;
+      const weatherData = await getWeatherData(lastSearchedLocation);
       console.log(weatherData);
       renderData(weatherData);
       locationInput.value = "";

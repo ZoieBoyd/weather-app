@@ -1,10 +1,12 @@
+import { settings } from "./settings";
+
 const apiKey = "3DB9NYWHCVU8C9N2VE72V4JST";
-const temperatureUnit = "metric"; // or "uk" or "us"
 
 export async function getWeatherData(location) {
+   const apiTempUnit = settings.temperatureUnit === "celsius" ? "metric" : "us";
    try {
       const response = await fetch(
-         `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=${temperatureUnit}&include=hours%2Ccurrent&key=${apiKey}&contentType=json`,
+         `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=${apiTempUnit}&include=hours%2Ccurrent&key=${apiKey}&contentType=json`,
          { mode: "cors" }
       );
       const weatherData = await response.json();

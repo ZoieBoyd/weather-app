@@ -1,4 +1,7 @@
 import { format, parse } from "date-fns";
+import { settings } from "./settings";
+import { lastSearchedLocation } from ".";
+import { getWeatherData } from "./api";
 const root = document.documentElement;
 
 export const renderData = (weatherData) => {
@@ -80,7 +83,12 @@ const createHourlyForecastCard = (data) => {
    const icon = document.createElement("img");
    const temp = document.createElement("p");
    temp.className = "hourly-temp";
-   time.textContent = format(parse(data.time, "HH:mm:ss", new Date()), "h:mm");
+
+   time.textContent = format(
+      parse(data.time, "HH:mm:ss", new Date()),
+      settings.timeUnit === "12 hour" ? "h:mmaaa" : "HH:mm"
+   );
+
    import(`./images/weather-icons/minimal/${data.icon}.png`).then((module) => {
       icon.src = module.default;
    });
@@ -93,3 +101,44 @@ const clearHourlyForecast = () => {
    const container = document.getElementById("hourly-card-container");
    container.replaceChildren();
 };
+
+const dialog = document.querySelector("dialog");
+const tempSetting = document.getElementById("temperature-toggle");
+const timeSetting = document.getElementById("time-toggle");
+
+const settingsButton = document.getElementById("settings-btn");
+settingsButton.addEventListener("click", () => {
+   tempSetting.checked = settings.temperatureUnit !== "celsius";
+   timeSetting.checked = settings.timeUnit !== "24 hour";
+   dialog.showModal();
+});
+
+const closeButtons = document.querySelectorAll(".close-btn");
+closeButtons.forEach((button) => {
+   button.addEventListener("click", () => {
+      dialog.close();
+      console.log(tempSetting.checked);
+   });
+});
+
+const saveButton = document.getElementById("save-btn");
+saveButton.addEventListener("click", async () => {
+   saveSettings();
+   const weatherData = await getWeatherData(lastSearchedLocation);
+   renderData(weatherData);
+   console.log(weatherData);
+   dialog.close();
+});
+
+function saveSettings() {
+   if (tempSetting.checked) {
+      settings.temperatureUnit = "fahrenheit";
+   } else {
+      settings.temperatureUnit = "celsius";
+   }
+   if (timeSetting.checked) {
+      settings.timeUnit = "12 hour";
+   } else {
+      settings.timeUnit = "24 hour";
+   }
+}
