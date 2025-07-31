@@ -8,6 +8,7 @@ body {
    width: 100vw;
    min-height: 100vh;
    font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
+   color: var(--text-color);
    background-color: var(--bg-color);
    background: var(--bg-gradient);
    display: grid;
@@ -18,19 +19,24 @@ body {
       "nav todayStats todayForecast"
       "nav fiveDayForecast todayForecast";
    row-gap: 2rem;
-   color: var(--text-color);
+}
+
+#date,
+.hourly-card,
+#five-day-forecast {
+   font-family: "Poppins", sans-serif;
 }
 
 #main-content {
+   grid-area: main-content;
    display: grid;
    gap: 1rem;
    grid-template-areas:
       "headline weatherIcon"
       "temperature weatherIcon";
+   padding-inline: 1rem;
    color: white;
    text-shadow: var(--text-shadow);
-   grid-area: main-content;
-   padding-inline: 1rem;
 }
 
 #headline {
@@ -46,16 +52,6 @@ body {
    font-size: 7rem;
 }
 
-#date,
-.hourly-card,
-#five-day-forecast {
-   font-family: "Poppins", sans-serif;
-}
-
-#date {
-   font-size: 2.5rem;
-}
-
 #today-weather-icon {
    grid-area: weatherIcon;
    justify-self: end;
@@ -63,25 +59,21 @@ body {
 }
 
 #current-conditions {
+   grid-area: todayStats;
    display: grid;
    grid-auto-flow: column;
-   text-align: center;
    gap: 3rem;
-   grid-area: todayStats;
    align-items: center;
    justify-self: center;
-}
-
-#current-conditions div,
-#five-day-forecast {
-   background-color: var(--card-bg-color);
+   text-align: center;
 }
 
 #current-conditions div {
-   color: var(--card-text-color);
-   border-radius: 35px;
-   padding: 1.3rem;
    width: 14rem;
+   padding: 1.3rem;
+   border-radius: 35px;
+   background-color: var(--card-bg-color);
+   color: var(--card-text-color);
 }
 
 #wind-speed,
@@ -102,95 +94,6 @@ body {
 
 #today-forecast {
    grid-area: todayForecast;
-}
-
-#hourly-card-container {
-   display: flex;
-   flex-direction: column;
-   gap: 1rem;
-}
-
-.hourly-card {
-   display: grid;
-   grid-auto-flow: column;
-   background-color: white;
-   border-radius: 10px;
-   align-items: center;
-   padding-inline: 1.5rem;
-   font-size: 1.5rem;
-   grid-template-columns: repeat(3, 1fr);
-}
-
-.hourly-card,
-#five-day-forecast {
-   color: var(--secondary-text-color);
-}
-
-.hourly-card img {
-   width: 6.3rem;
-   justify-self: center;
-}
-
-.hourly-temp {
-   text-align: right;
-   font-size: 2rem;
-   font-weight: 500;
-}
-
-#five-day-forecast {
-   grid-area: fiveDayForecast;
-}
-
-nav {
-   grid-area: nav;
-   width: 80%;
-   display: flex;
-   justify-content: center;
-   align-items: flex-end;
-   padding-bottom: 2rem;
-}
-
-#settings-btn {
-   background-image: url("../images/Settings.svg");
-   width: 3.5rem;
-   height: 3.5rem;
-}
-
-form {
-   grid-area: search;
-   margin-top: 1rem;
-}
-
-form,
-#main-content,
-#current-conditions {
-   margin-left: 1rem;
-}
-
-form input {
-   border: none;
-   border-radius: 25px;
-   padding: 0.7rem 2rem;
-   font-size: 1.25rem;
-   width: 91%;
-}
-
-form input::placeholder {
-   font-style: italic;
-}
-
-nav,
-#today-forecast {
-   background-color: var(--secondary-card-bg-color);
-}
-
-nav,
-#today-forecast,
-#five-day-forecast {
-   box-shadow: var(--box-shadow);
-}
-
-#today-forecast {
    border-radius: 20px;
    padding: 2.5rem;
    padding-right: 1rem;
@@ -198,9 +101,19 @@ nav,
    margin-right: 6rem;
    height: 86vh;
    overflow: hidden;
+   background-color: var(--secondary-card-bg-color);
+   box-shadow: var(--box-shadow);
+   margin-bottom: 2rem;
+}
+
+#date {
+   font-size: 2.5rem;
 }
 
 #hourly-card-container {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
    overflow-y: auto;
    height: 100%;
    padding-bottom: 3rem;
@@ -218,17 +131,40 @@ nav,
    border-radius: 10px;
 }
 
-#today-forecast,
-#five-day-forecast {
-   margin-bottom: 2rem;
+.hourly-card {
+   display: grid;
+   grid-auto-flow: column;
+   grid-template-columns: repeat(3, 1fr);
+   align-items: center;
+   padding-inline: 1.5rem;
+   font-size: 1.5rem;
+   background-color: white;
+   border-radius: 10px;
+   color: var(--secondary-text-color);
+}
+
+.hourly-card img {
+   width: 6.3rem;
+   justify-self: center;
+}
+
+.hourly-temp {
+   text-align: right;
+   font-size: 2rem;
+   font-weight: 500;
 }
 
 #five-day-forecast {
+   grid-area: fiveDayForecast;
    display: grid;
    grid-auto-flow: column;
-   border-radius: 20px;
    padding: 1rem;
    font-size: 1.2rem;
+   border-radius: 20px;
+   background-color: var(--card-bg-color);
+   color: var(--secondary-text-color);
+   box-shadow: var(--box-shadow);
+   margin-bottom: 2rem;
 }
 
 #five-day-forecast > div {
@@ -262,6 +198,59 @@ nav,
    grid-area: max;
 }
 
+nav {
+   grid-area: nav;
+   width: 80%;
+   display: flex;
+   justify-content: center;
+   align-items: flex-end;
+   padding-bottom: 2rem;
+   background-color: var(--secondary-card-bg-color);
+   box-shadow: var(--box-shadow);
+}
+
+.image-btn {
+   border: none;
+   background-repeat: no-repeat;
+   background-size: contain;
+   background-color: transparent;
+}
+
+#settings-btn {
+   background-image: url("../images/Settings.svg");
+   width: 3.5rem;
+   height: 3.5rem;
+}
+
+#close-btn {
+   background-image: url("../images/Close.svg");
+   width: 1.5rem;
+   height: 1.5rem;
+}
+
+#close-btn,
+#form-actions {
+   align-self: flex-end;
+}
+
+form {
+   grid-area: search;
+   margin-top: 1rem;
+   margin-left: 1rem;
+}
+
+form input {
+   border: none;
+   border-radius: 25px;
+   padding: 0.7rem 2rem;
+   font-size: 1.25rem;
+   width: 91%;
+}
+
+form input::placeholder {
+   font-style: italic;
+}
+
 h4 {
    font-size: 1.9rem;
    margin-bottom: 1.5rem;
@@ -278,9 +267,9 @@ h4 {
 dialog {
    border: none;
    margin: auto;
-   background-color: var(--secondary-card-bg-color);
    padding: 1.6rem 2rem;
    border-radius: 20px;
+   background-color: var(--secondary-card-bg-color);
 }
 
 dialog::backdrop {
@@ -301,24 +290,6 @@ dialog::backdrop {
    margin-bottom: 1.7rem;
 }
 
-#close-btn {
-   background-image: url("../images/Close.svg");
-   width: 1.5rem;
-   height: 1.5rem;
-}
-
-#close-btn,
-#form-actions {
-   align-self: flex-end;
-}
-
-.image-btn {
-   border: none;
-   background-repeat: no-repeat;
-   background-size: contain;
-   background-color: transparent;
-}
-
 .toggle {
    display: none;
 }
@@ -332,11 +303,6 @@ dialog::backdrop {
    border: 3px solid var(--toggle-background);
    background: var(--toggle-background);
    color: var(--toggle-background);
-}
-
-.toggle-container,
-#save-btn,
-.close-btn {
    cursor: pointer;
 }
 
@@ -370,6 +336,7 @@ dialog::backdrop {
    color: var(--toggle-background);
    transition: color 0.3s;
 }
+
 .toggle + .toggle-container div:first-child {
    color: var(--toggle-background);
    transition: color 0.3s;
@@ -394,6 +361,7 @@ dialog::backdrop {
 #save-btn {
    background-color: var(--text-color);
    color: white;
+   cursor: pointer;
 }
 
 #cancel-btn {
