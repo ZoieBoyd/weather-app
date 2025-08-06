@@ -5,6 +5,13 @@
    --text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
    --box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
    --toggle-background: #3b6788;
+
+   /* Hamburger Menu */
+   --bar-width: 60px;
+   --bar-height: 6px;
+   --hamburger-gap: 10px;
+   --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+   --anim-timing: 200ms ease-in-out;
 }
 
 :root.day {

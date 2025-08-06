@@ -15,7 +15,7 @@ body {
    grid-template-columns: 0.5fr 3.5fr 2fr;
    grid-template-areas:
       "nav search ."
-      "nav main-content todayForecast"
+      "nav mainContent todayForecast"
       "nav todayStats todayForecast"
       "nav fiveDayForecast todayForecast";
    row-gap: 2rem;
@@ -23,12 +23,12 @@ body {
 
 #date,
 .hourly-card,
-#five-day-forecast {
+#five-day-forecast div {
    font-family: "Poppins", sans-serif;
 }
 
 #main-content {
-   grid-area: main-content;
+   grid-area: mainContent;
    display: grid;
    gap: 1rem;
    grid-template-areas:
@@ -37,6 +37,12 @@ body {
    padding-inline: 1rem;
    color: white;
    text-shadow: var(--text-shadow);
+}
+
+#main-content,
+#current-conditions,
+#five-day-forecast {
+   margin-left: 2rem;
 }
 
 #headline {
@@ -48,14 +54,16 @@ body {
 }
 
 #temperature {
+   font-family: "Plus Jakarta Sans Bold";
    align-self: start;
    font-size: 7rem;
 }
 
 #today-weather-icon {
    grid-area: weatherIcon;
+   filter: drop-shadow(var(--text-shadow));
    justify-self: end;
-   width: clamp(20%, 80%, 350px);
+   width: clamp(20%, 75%, 350px);
 }
 
 #current-conditions {
@@ -162,9 +170,12 @@ body {
    font-size: 1.2rem;
    border-radius: 20px;
    background-color: var(--card-bg-color);
-   color: var(--secondary-text-color);
    box-shadow: var(--box-shadow);
    margin-bottom: 2rem;
+}
+
+#five-day-forecast h4 {
+   display: none;
 }
 
 #five-day-forecast > div {
@@ -178,6 +189,7 @@ body {
    margin: 0.7rem 1rem;
    background-color: white;
    border-radius: 10px;
+   color: var(--secondary-text-color);
 }
 
 #five-day-forecast > div > img {
@@ -196,6 +208,10 @@ body {
 
 .max-temp {
    grid-area: max;
+}
+
+#hamburger-menu {
+   display: none;
 }
 
 nav {

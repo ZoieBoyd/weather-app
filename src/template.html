@@ -3,6 +3,7 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" href="./images/weather-icons/minimal/partly-cloudy-day.png" />
       <title>Weather</title>
    </head>
    <body>
@@ -29,6 +30,10 @@
          </div>
       </dialog>
 
+      <label id="hamburger-menu">
+         <input type="checkbox" />
+      </label>
+
       <nav>
          <button id="settings-btn" class="image-btn"></button>
       </nav>
@@ -46,7 +51,9 @@
             <h2 id="location" class="extra-bold">Location</h2>
             <h3 id="date" class="bold">Date</h3>
          </div>
-         <h3 id="temperature" class="extra-bold">0°</h3>
+         <h3 id="temperature" class="extra-bold">
+            <span id="temp-number">0</span><span id="degree-symbol">°</span>
+         </h3>
          <img src="./images/weather-icons/3D/day/clear-day.png" id="today-weather-icon" />
       </section>
 
@@ -73,6 +80,7 @@
          <div id="hourly-card-container"></div>
       </section>
       <section id="five-day-forecast">
+         <h4>Five Day Outlook</h4>
          <div>
             <p class="five-day-date"></p>
             <img src="./images//weather-icons/minimal/clear-day.png" />

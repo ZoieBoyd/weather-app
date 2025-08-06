@@ -7,7 +7,7 @@ const root = document.documentElement;
 export const renderData = (weatherData) => {
    const location = document.getElementById("location");
    const todayDate = document.getElementById("date");
-   const temperature = document.getElementById("temperature");
+   const temperature = document.getElementById("temp-number");
    const windSpeed = document.getElementById("wind-speed");
    const humidity = document.getElementById("humidity-level");
    const rainChance = document.getElementById("rain-chance");
@@ -15,7 +15,7 @@ export const renderData = (weatherData) => {
 
    location.textContent = weatherData.city;
    todayDate.textContent = format(new Date(weatherData.date), "EEEE, do MMMM");
-   temperature.textContent = `${weatherData.temperature}°`;
+   temperature.textContent = weatherData.temperature;
    windSpeed.textContent = `${weatherData.windSpeed} mph`;
    humidity.textContent = `${weatherData.humidity}%`;
    rainChance.textContent = `${weatherData.rainChance}%`;
@@ -110,6 +110,7 @@ const settingsButton = document.getElementById("settings-btn");
 settingsButton.addEventListener("click", () => {
    tempSetting.checked = settings.temperatureUnit !== "celsius";
    timeSetting.checked = settings.timeUnit !== "24 hour";
+
    dialog.showModal();
 });
 
