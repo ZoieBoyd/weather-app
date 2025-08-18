@@ -384,3 +384,7 @@ dialog::backdrop {
    background-color: white;
    color: var(--text-color);
 }
+
+#search-mobile {
+   display: none;
+}

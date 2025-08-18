@@ -35,14 +35,22 @@
       </label>
 
       <nav>
+         <form action="submit" id="search-mobile">
+            <input
+               type="text"
+               name="location"
+               class="search-bar"
+               placeholder="Search by location..."
+            />
+         </form>
          <button id="settings-btn" class="image-btn"></button>
       </nav>
 
-      <form action="submit">
+      <form action="submit" id="search-desktop">
          <input
             type="text"
             name="location"
-            id="location-input"
+            class="search-bar"
             placeholder="Search by location (e.g. London)..."
          />
       </form>

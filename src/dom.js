@@ -118,16 +118,18 @@ const closeButtons = document.querySelectorAll(".close-btn");
 closeButtons.forEach((button) => {
    button.addEventListener("click", () => {
       dialog.close();
-      console.log(tempSetting.checked);
    });
 });
 
+const hamburgerButton = document.querySelector("#hamburger-menu input");
 const saveButton = document.getElementById("save-btn");
 saveButton.addEventListener("click", async () => {
    saveSettings();
    const weatherData = await getWeatherData(lastSearchedLocation);
    renderData(weatherData);
-   console.log(weatherData);
+   if (window.innerWidth < 600) {
+      hamburgerButton.click();
+   }
    dialog.close();
 });
 
