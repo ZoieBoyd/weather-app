@@ -1,20 +1,4 @@
 @font-face {
-   font-family: "Plus Jakarta Sans";
-   src:
-      url("../fonts/plusjakartasans-variablefont_wght-webfont.woff2") format("woff2"),
-      url("../fonts/plusjakartasans-variablefont_wght-webfont.woff") format("woff"),
-      url("../fonts/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
-   font-weight: normal;
-   font-style: normal;
-}
-
-@font-face {
-   font-family: "Plus Jakarta Sans Bold";
-   src: url("../fonts/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
-   font-weight: 800;
-}
-
-@font-face {
    font-family: "Poppins";
    src:
       url("../fonts/poppins-regular-webfont.woff2") format("woff2"),
