@@ -22,3 +22,4 @@
 - [Weather Icons Pack v1.1](https://dribbble.com/shots/16445086--Weather-Icons-Pack-v1-1) by [Taha Lahouti](https://dribbble.com/TahaTH)
 - [Scorcher Weather Icon Pack](https://dribbble.com/shots/23959836-Scorcher-Weather-icon-pack-NEW) by [Majid Manavi](https://dribbble.com/majidart73)
 - [Error Icon](https://www.svgrepo.com/svg/447994/error) by [Moneytree](https://www.svgrepo.com/author/moneytree/)
+- [Settings Icon](https://staging.svgrepo.com/svg/471876/settings-04) by [SVG Repo](https://staging.svgrepo.com/)

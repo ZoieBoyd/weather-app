@@ -22,8 +22,8 @@ locationInputs.forEach((input) =>
          if (window.getComputedStyle(input.parentElement).getPropertyValue("display") !== "none") {
             isDataLoaded = false;
             showLoader();
+            const weatherData = await getWeatherData(input.value);
             lastSearchedLocation = input.value;
-            const weatherData = await getWeatherData(lastSearchedLocation);
             renderData(weatherData);
             isDataLoaded = true;
             input.value = "";
