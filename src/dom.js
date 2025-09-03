@@ -155,3 +155,17 @@ export function hideLoader() {
    const loader = document.getElementById("loader");
    loader.style.display = "none";
 }
+
+const errorPopup = document.getElementById("error-popup");
+
+export function showErrorMessage(message) {
+   const errorText = document.getElementById("error-message");
+   errorText.textContent = `Error: ${message}`;
+   errorPopup.style.display = "flex";
+   setTimeout(() => {
+      errorPopup.style.display = "none";
+   }, 2000);
+}
+
+const closeErrorButton = document.getElementById("close-error-btn");
+closeErrorButton.addEventListener("click", () => (errorPopup.style.display = "none"));

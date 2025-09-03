@@ -3,11 +3,10 @@ import "normalize.css";
 import "./styles/fonts.css";
 import "./styles/variables.css";
 import "./styles/style.css";
-//import "./styles/loading-screen.css";
 import "./styles/mobile-styles.css";
 
 import { getWeatherData } from "./api";
-import { hideLoader, renderData, showLoader } from "./dom";
+import { hideLoader, renderData, showErrorMessage, showLoader } from "./dom";
 
 const locationInputs = document.querySelectorAll(".search-bar");
 export let lastSearchedLocation = "London";
@@ -59,7 +58,8 @@ function waitForLoad() {
       isDataLoaded = true;
       await waitForLoad();
       hideLoader();
-   } catch {
-      console.log("ohhh nooooo");
+   } catch (err) {
+      showErrorMessage("An unexpected error has occurred. Try reloading the page.");
+      throw err;
    }
 })();

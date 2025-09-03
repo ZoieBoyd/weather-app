@@ -1,4 +1,4 @@
-import { hideLoader } from "./dom";
+import { hideLoader, showErrorMessage } from "./dom";
 import { settings } from "./settings";
 
 const apiKey = "3DB9NYWHCVU8C9N2VE72V4JST";
@@ -33,8 +33,8 @@ export async function getWeatherData(location) {
          }))
       };
    } catch (err) {
-      console.error("Oh no");
       hideLoader();
+      showErrorMessage("Location not found");
       throw err;
    }
 }

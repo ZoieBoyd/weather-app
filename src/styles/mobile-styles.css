@@ -220,9 +220,22 @@
    #five-day-forecast {
       margin-top: 1rem;
    }
-}
 
-#toggle-options {
-   flex-direction: column;
-   align-items: center;
+   #toggle-options {
+      flex-direction: column;
+      align-items: center;
+   }
+
+   #error-popup {
+      gap: 0.75rem;
+   }
+
+   #error-popup img {
+      height: 2.2rem;
+   }
+
+   #error-popup p {
+      width: 63vw;
+      font-size: 1.15rem;
+   }
 }

@@ -21,3 +21,4 @@
 - [3D Weather Icons](https://dribbble.com/shots/16526395-3D-Weather-Icons) by [Mikołaj Niżnik](https://dribbble.com/mniznik)
 - [Weather Icons Pack v1.1](https://dribbble.com/shots/16445086--Weather-Icons-Pack-v1-1) by [Taha Lahouti](https://dribbble.com/TahaTH)
 - [Scorcher Weather Icon Pack](https://dribbble.com/shots/23959836-Scorcher-Weather-icon-pack-NEW) by [Majid Manavi](https://dribbble.com/majidart73)
+- [Error Icon](https://www.svgrepo.com/svg/447994/error) by [Moneytree](https://www.svgrepo.com/author/moneytree/)
