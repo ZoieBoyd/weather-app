@@ -1,5 +1,5 @@
-import { hideLoader, showErrorMessage } from "./dom";
-import { settings } from "./settings";
+import { hideLoader, showErrorMessage } from "../dom";
+import { settings } from "../settings";
 
 const apiKey = "3DB9NYWHCVU8C9N2VE72V4JST";
 

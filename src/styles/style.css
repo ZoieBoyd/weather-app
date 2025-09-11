@@ -245,21 +245,43 @@ nav {
 }
 
 form {
+   gap: 1rem;
    grid-area: search;
    margin-top: 1rem;
    margin-left: 1rem;
+   border-radius: 50px;
+   padding: 0.5rem 1.7rem;
+   font-size: 1.25rem;
+   align-items: center;
+}
+
+#search-desktop {
+   display: flex;
+   background-color: var(--secondary-card-bg-color);
 }
 
 form input {
+   background-color: transparent;
    border: none;
-   border-radius: 25px;
-   padding: 0.7rem 2rem;
-   font-size: 1.25rem;
    width: 91%;
+}
+
+form input:focus {
+   outline: none;
+}
+
+form img {
+   height: 2.2rem;
 }
 
 form input::placeholder {
    font-style: italic;
+}
+
+.location-btn {
+   background-image: url("../images/Location.svg");
+   height: 2.5rem;
+   width: 2.5rem;
 }
 
 h4 {
@@ -338,7 +360,6 @@ dialog::backdrop {
 .toggle:checked + .toggle-container::before {
    left: 50%;
 }
-
 .toggle:checked + .toggle-container div:first-child {
    color: white;
    transition: color 0.3s;

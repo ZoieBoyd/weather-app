@@ -5,12 +5,18 @@ import "./styles/variables.css";
 import "./styles/style.css";
 import "./styles/mobile-styles.css";
 
-import { getWeatherData } from "./api";
-import { hideLoader, renderData, showErrorMessage, showLoader } from "./dom";
+import { getWeatherData } from "./modules/apis/weatherApi";
+import { getUserCity } from "./modules/apis/geolocationApi";
+import {
+   closeMobileNav,
+   hideLoader,
+   renderData,
+   showErrorMessage,
+   showLoader
+} from "./modules/dom";
 
 const locationInputs = document.querySelectorAll(".search-bar");
 export let lastSearchedLocation = "London";
-const hamburgerMenu = document.querySelector("#hamburger-menu input");
 
 let isDataLoaded = false;
 
@@ -18,21 +24,13 @@ locationInputs.forEach((input) =>
    input.addEventListener("keypress", async (event) => {
       if (event.key === "Enter") {
          event.preventDefault();
+
          // Prevents hidden search bar from triggering a search with empty or old values
          if (window.getComputedStyle(input.parentElement).getPropertyValue("display") !== "none") {
-            isDataLoaded = false;
-            showLoader();
-            const weatherData = await getWeatherData(input.value);
-            lastSearchedLocation = input.value;
-            renderData(weatherData);
-            isDataLoaded = true;
+            updateWeatherDisplay(input.value);
             input.value = "";
             input.blur();
-            await waitForLoad();
-            hideLoader();
-            if (window.innerWidth < 600) {
-               hamburgerMenu.click();
-            }
+            closeMobileNav();
          }
       }
    })
@@ -49,17 +47,30 @@ function waitForLoad() {
    });
 }
 
-(async () => {
+async function updateWeatherDisplay(cityInput) {
    isDataLoaded = false;
    showLoader();
-   try {
-      const weatherData = await getWeatherData("London");
-      renderData(weatherData);
-      isDataLoaded = true;
-      await waitForLoad();
-      hideLoader();
-   } catch (err) {
-      showErrorMessage("An unexpected error has occurred. Try reloading the page.");
-      throw err;
-   }
+   const weatherData = await getWeatherData(cityInput);
+   lastSearchedLocation = cityInput;
+   renderData(weatherData);
+   isDataLoaded = true;
+   await waitForLoad();
+   hideLoader();
+}
+export const requestUserLocation = () => navigator.geolocation.getCurrentPosition(success, error);
+
+async function success(position) {
+   const longitude = position.coords.longitude;
+   const latitude = position.coords.latitude;
+   const city = await getUserCity(longitude, latitude);
+   updateWeatherDisplay(city);
+}
+
+const error = () => {
+   showErrorMessage("Location permissions are not enabled");
+};
+
+// Immediately invoked function upon startup
+(async () => {
+   updateWeatherDisplay("London");
 })();

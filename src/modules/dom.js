@@ -1,8 +1,9 @@
 import { format, parse } from "date-fns";
 import { settings } from "./settings";
-import { lastSearchedLocation } from ".";
-import { getWeatherData } from "./api";
+import { lastSearchedLocation, requestUserLocation } from "..";
+import { getWeatherData } from "./apis/weatherApi";
 const root = document.documentElement;
+const hamburgerButton = document.querySelector("#hamburger-menu input");
 
 export const renderData = (weatherData) => {
    const location = document.getElementById("location");
@@ -12,6 +13,15 @@ export const renderData = (weatherData) => {
    const humidity = document.getElementById("humidity-level");
    const rainChance = document.getElementById("rain-chance");
    const conditionIcon = document.getElementById("today-weather-icon");
+
+   const locationButtons = document.querySelectorAll(".location-btn");
+   locationButtons.forEach((locationButton) => {
+      locationButton.addEventListener("click", (event) => {
+         event.preventDefault();
+         requestUserLocation();
+         closeMobileNav();
+      });
+   });
 
    location.textContent = weatherData.city;
    todayDate.textContent = format(new Date(weatherData.date), "EEEE, do MMMM");
@@ -32,7 +42,7 @@ export const renderData = (weatherData) => {
       root.className = "night";
    }
 
-   import(`./images/weather-icons/3D/${timeOfDay}/${weatherCondition}.png`).then((module) => {
+   import(`../images/weather-icons/3D/${timeOfDay}/${weatherCondition}.png`).then((module) => {
       const iconUrl = module.default;
       conditionIcon.src = iconUrl;
    });
@@ -57,7 +67,7 @@ const createFiveDayForecastCard = (data, card) => {
 
    date.innerHTML = `<span class = "bold">${format(new Date(data.day), "eee")}</span> ${format(new Date(data.day), "do")}`;
 
-   import(`./images/weather-icons/minimal/${data.icon}.png`).then((module) => {
+   import(`../images/weather-icons/minimal/${data.icon}.png`).then((module) => {
       weatherIcon.src = module.default;
    });
 
@@ -89,7 +99,7 @@ const createHourlyForecastCard = (data) => {
       settings.timeUnit === "12 hour" ? "h:mmaaa" : "HH:mm"
    );
 
-   import(`./images/weather-icons/minimal/${data.icon}.png`).then((module) => {
+   import(`../images/weather-icons/minimal/${data.icon}.png`).then((module) => {
       icon.src = module.default;
    });
    temp.textContent = `${data.temperature}°`;
@@ -121,15 +131,12 @@ closeButtons.forEach((button) => {
    });
 });
 
-const hamburgerButton = document.querySelector("#hamburger-menu input");
 const saveButton = document.getElementById("save-btn");
 saveButton.addEventListener("click", async () => {
    saveSettings();
    const weatherData = await getWeatherData(lastSearchedLocation);
    renderData(weatherData);
-   if (window.innerWidth < 600) {
-      hamburgerButton.click();
-   }
+   closeMobileNav();
    dialog.close();
 });
 
@@ -169,3 +176,7 @@ export function showErrorMessage(message) {
 
 const closeErrorButton = document.getElementById("close-error-btn");
 closeErrorButton.addEventListener("click", () => (errorPopup.style.display = "none"));
+
+export const closeMobileNav = () => {
+   if (window.innerWidth < 600) hamburgerButton.click();
+};

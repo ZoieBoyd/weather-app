@@ -79,8 +79,9 @@
    }
 
    #search-mobile {
-      display: block;
+      display: flex;
       width: 100vw;
+      background-color: white;
    }
 
    #hamburger-menu:has(input:checked) ~ nav {
