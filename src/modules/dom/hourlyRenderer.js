@@ -25,8 +25,10 @@ const createHourlyForecastCard = (data) => {
       parse(data.time, "HH:mm:ss", new Date()),
       settings.timeUnit === "12 hour" ? "h:mmaaa" : "HH:mm"
    );
+
    const weatherCondition = data.icon;
    loadMinimalWeatherIcon(weatherCondition, weatherIcon);
+
    temp.textContent = `${data.temperature}°`;
    card.append(time, weatherIcon, temp);
    container.appendChild(card);

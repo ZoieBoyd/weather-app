@@ -1,4 +1,8 @@
 @media (max-width: 600px) {
+   body {
+      overflow-y: scroll;
+   }
+
    #hamburger-menu {
       --x-width: calc(var(--hamburger-height) * 1.41421356237); /* Multiply by sqrt of 2 */
 
