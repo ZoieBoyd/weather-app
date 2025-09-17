@@ -1,10 +1,12 @@
-import { renderData } from "../dom";
+import {
+   renderData,
+   closeMobileNav,
+   getLastSearchedLocation,
+   updateWeatherDisplay
+} from "../dom/dom";
 import { getWeatherData } from "../apis/weatherApi";
 import { settings, saveSettings } from "../settings";
-import { closeMobileNav } from "../dom";
-import { getLastSearchedLocation } from "../dom";
 import { requestUserLocation } from "../apis/geolocationApi";
-import { updateWeatherDisplay } from "../dom";
 
 const dialog = document.querySelector("dialog");
 const tempSetting = document.getElementById("temperature-toggle");
@@ -23,11 +25,9 @@ export const handleButtons = () => {
       input.addEventListener("keypress", async (event) => {
          if (event.key === "Enter") {
             event.preventDefault();
-
-            // Prevents hidden search bar from triggering a search with empty or old values
-            if (
-               window.getComputedStyle(input.parentElement).getPropertyValue("display") !== "none"
-            ) {
+            const isSearchBarVisible =
+               window.getComputedStyle(input.parentElement).getPropertyValue("display") !== "none";
+            if (isSearchBarVisible) {
                updateWeatherDisplay(input.value);
                input.value = "";
                input.blur();

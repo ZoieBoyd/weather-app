@@ -6,7 +6,7 @@ import "./styles/style.css";
 import "./styles/mobile-styles.css";
 
 import { handleButtons } from "./modules/dom/buttonHandler";
-import { updateWeatherDisplay } from "./modules/dom";
+import { updateWeatherDisplay } from "./modules/dom/dom";
 
 (async () => {
    updateWeatherDisplay("London");

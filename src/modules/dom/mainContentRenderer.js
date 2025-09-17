@@ -7,7 +7,6 @@ export const renderMainContent = (weatherData) => {
    const windSpeed = document.getElementById("wind-speed");
    const humidity = document.getElementById("humidity-level");
    const rainChance = document.getElementById("rain-chance");
-   const conditionIcon = document.getElementById("today-weather-icon");
 
    location.textContent = weatherData.city;
    todayDate.textContent = format(new Date(weatherData.date), "EEEE, do MMMM");
@@ -19,13 +18,7 @@ export const renderMainContent = (weatherData) => {
    const weatherCondition = weatherData.icon;
    const hour = parseInt(weatherData.time.slice(0, 2));
    setTheme(hour, weatherCondition);
-
-   import(
-      `../../images/weather-icons/3D/${getTimeOfDay(hour, weatherCondition)}/${weatherCondition}.png`
-   ).then((module) => {
-      const iconUrl = module.default;
-      conditionIcon.src = iconUrl;
-   });
+   loadWeatherIcon(hour, weatherCondition);
 };
 
 const setTheme = (hour, weatherCondition) => {
@@ -39,4 +32,12 @@ const getTimeOfDay = (hour, weatherCondition) => {
    return (isEveningHour && !weatherCondition.includes("day")) || weatherCondition.includes("night")
       ? "night"
       : "day";
+};
+
+const loadWeatherIcon = async (hour, weatherCondition) => {
+   const conditionIcon = document.getElementById("today-weather-icon");
+   const module = await import(
+      `../../images/weather-icons/3D/${getTimeOfDay(hour, weatherCondition)}/${weatherCondition}.png`
+   );
+   conditionIcon.src = module.default;
 };

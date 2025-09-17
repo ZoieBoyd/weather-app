@@ -1,7 +1,7 @@
-import { renderMainContent } from "./dom/mainContentRenderer";
-import { renderFiveDayForecast } from "./dom/fiveDayRenderer";
-import { renderHourlyForecast } from "./dom/hourlyRenderer";
-import { getWeatherData } from "./apis/weatherApi";
+import { renderMainContent } from "./mainContentRenderer";
+import { renderFiveDayForecast } from "./fiveDayRenderer";
+import { renderHourlyForecast } from "./hourlyRenderer";
+import { getWeatherData } from "../apis/weatherApi";
 
 let isDataLoaded = false;
 let lastSearchedLocation = "London";
@@ -50,15 +50,20 @@ export async function updateWeatherDisplay(cityInput) {
 
 const errorPopup = document.getElementById("error-popup");
 
-export function showErrorMessage(message) {
+export const showErrorMessage = (message) => {
    const errorText = document.getElementById("error-message");
    errorText.textContent = `Error: ${message}`;
    errorPopup.style.display = "flex";
    setTimeout(() => {
       errorPopup.style.display = "none";
    }, 2000);
-}
+};
 
 export const closeMobileNav = () => {
    if (window.innerWidth < 600) hamburgerButton.click();
+};
+
+export const loadMinimalWeatherIcon = async (weatherConditon, image) => {
+   const module = await import(`../../images/weather-icons/minimal/${weatherConditon}.png`);
+   image.src = module.default;
 };

@@ -1,5 +1,6 @@
 import { format, parse } from "date-fns";
 import { settings } from "../settings";
+import { loadMinimalWeatherIcon } from "./dom";
 
 export const renderHourlyForecast = (weatherData) => {
    clearHourlyForecast();
@@ -16,7 +17,7 @@ const createHourlyForecastCard = (data) => {
    const card = document.createElement("div");
    card.className = "hourly-card";
    const time = document.createElement("p");
-   const icon = document.createElement("img");
+   const weatherIcon = document.createElement("img");
    const temp = document.createElement("p");
    temp.className = "hourly-temp";
 
@@ -24,12 +25,10 @@ const createHourlyForecastCard = (data) => {
       parse(data.time, "HH:mm:ss", new Date()),
       settings.timeUnit === "12 hour" ? "h:mmaaa" : "HH:mm"
    );
-
-   import(`../../images/weather-icons/minimal/${data.icon}.png`).then((module) => {
-      icon.src = module.default;
-   });
+   const weatherCondition = data.icon;
+   loadMinimalWeatherIcon(weatherCondition, weatherIcon);
    temp.textContent = `${data.temperature}°`;
-   card.append(time, icon, temp);
+   card.append(time, weatherIcon, temp);
    container.appendChild(card);
 };
 

@@ -1,5 +1,4 @@
-import { showErrorMessage } from "../dom";
-import { updateWeatherDisplay } from "../dom";
+import { showErrorMessage, updateWeatherDisplay } from "../dom/dom";
 
 async function getUserCity(longitude, latitude) {
    const response = await fetch(

@@ -10,9 +10,3 @@ export const saveSettings = (tempCheckbox, timeCheckbox) => {
 
    timeCheckbox.checked ? (settings.timeUnit = "12 hour") : (settings.timeUnit = "24 hour");
 };
-
-/*
-const saveSettings = (data) => {
-   localStorage.setItem("settings", JSON.stringify(data));
-}
-*/

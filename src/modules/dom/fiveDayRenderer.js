@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { loadMinimalWeatherIcon } from "./dom";
 
 export const renderFiveDayForecast = (weatherData) => {
    const fiveDayForecastData = weatherData.fiveDayForecast;
@@ -16,9 +17,8 @@ const createFiveDayForecastCard = (data, card) => {
 
    date.innerHTML = `<span class = "bold">${format(new Date(data.day), "eee")}</span> ${format(new Date(data.day), "do")}`;
 
-   import(`../../images/weather-icons/minimal/${data.icon}.png`).then((module) => {
-      weatherIcon.src = module.default;
-   });
+   const weatherCondition = data.icon;
+   loadMinimalWeatherIcon(weatherCondition, weatherIcon);
 
    minTemp.textContent = `${data.minTemperature}°`;
    maxTemp.textContent = `${data.maxTemperature}°`;
