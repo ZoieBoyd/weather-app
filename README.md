@@ -3,7 +3,7 @@ A colorful web-based application to view real-time weather data from around the 
 
 ![Screen Recording GIF](screenshots/screen-recording.gif)
 
-🌐 [View Live Demo]() | 🎨 [View Figma Design Mockup](https://www.figma.com/design/OmjFS9xxUZnGE5xoWucLV7/Weather-App?node-id=0-1&p=f&t=aOSgGDqqiZ7Qm8Ez-0)
+🌐 [View Live Demo](https://zoieboyd.github.io/weather-app/) | 🎨 [View Figma Design Mockup](https://www.figma.com/design/OmjFS9xxUZnGE5xoWucLV7/Weather-App?node-id=0-1&p=f&t=aOSgGDqqiZ7Qm8Ez-0)
 
 ## Features
 - Manual location searching
