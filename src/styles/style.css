@@ -264,6 +264,7 @@ form input {
    background-color: transparent;
    border: none;
    width: 91%;
+   height: 100%;
 }
 
 form input:focus {
